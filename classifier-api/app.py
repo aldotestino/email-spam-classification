@@ -37,6 +37,7 @@ class Data(BaseModel):
 @app.post('/predict', status_code=status.HTTP_200_OK)
 def predict(data: Data):
   return {
+    'text': data.text,
     'prediction': predict_ham_spam(data.text, model, tokenizer, device)
   }
 
