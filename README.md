@@ -1,5 +1,5 @@
 # How to start
-´´´sh
+```sh
 docker compose build
 docker compose up
-´´´
+```
