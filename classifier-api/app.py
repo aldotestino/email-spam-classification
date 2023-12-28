@@ -1,3 +1,4 @@
+import os
 from pydantic import BaseModel
 import torch
 from transformers import BertTokenizer
@@ -15,7 +16,7 @@ model = BERTClassifier(BERT_MODEL_NAME, NUM_CLASSES).to(device)
 model.load_state_dict(torch.load('model/bert_classifier.pth', map_location=device))
 model.eval()
 
-PORT = 8080
+PORT = int(os.environ.get('PORT', 8000))
 
 app = FastAPI()
 

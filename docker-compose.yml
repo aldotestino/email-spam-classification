@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    build: ./app
+    environment:
+      - VITE_API_URL=http://classifier-api:8080
+    ports:
+      - '3000:3000'
+    depends_on:
+      - classifier-api
+
+  classifier-api:
+    build: ./classifier-api
+    environment:
+      - PORT=8080
+    ports:
+      - '8080:8080'
