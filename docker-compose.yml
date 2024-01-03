@@ -8,10 +8,10 @@ services:
     ports:
       - '3000:3000'
     depends_on:
-      - classifier-api
+      - api
 
-  classifier-api:
-    build: ./classifier-api
+  api:
+    build: ./api
     environment:
       - PORT=8080
     ports:

@@ -6,13 +6,15 @@ from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from constants import BERT_MODEL_NAME, NUM_CLASSES
 from model.bert_classifier import BERTClassifier
 from model.methods import predict_ham_spam
 
+bert_model_name = 'bert-base-cased'
+num_classes = 2
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-tokenizer = BertTokenizer.from_pretrained(BERT_MODEL_NAME)
-model = BERTClassifier(BERT_MODEL_NAME, NUM_CLASSES).to(device)
+tokenizer = BertTokenizer.from_pretrained(bert_model_name)
+model = BERTClassifier(bert_model_name, num_classes).to(device)
 model.load_state_dict(torch.load('model/bert_classifier.pth', map_location=device))
 model.eval()
 
